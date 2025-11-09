@@ -65,6 +65,42 @@ npm run build
 npm start
 ```
 
+## Deployment
+
+### Deploy to Vercel
+
+This project is optimized for Vercel deployment. Follow these steps:
+
+1. **Push your code to GitHub** (if not already done):
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Deploy to Vercel**:
+   - Go to [vercel.com](https://vercel.com)
+   - Click "New Project"
+   - Import your GitHub repository
+   - Vercel will automatically detect Next.js and configure the project
+   - Click "Deploy"
+
+3. **Automatic Deployments**:
+   - Every push to `main` branch will trigger a new deployment
+   - Preview deployments are created for pull requests
+
+### Environment Variables
+
+No environment variables are required for this project. All API routes use public endpoints.
+
+### Build Settings
+
+Vercel will automatically detect:
+- **Framework**: Next.js
+- **Build Command**: `npm run build`
+- **Output Directory**: `.next` (auto-detected)
+- **Install Command**: `npm install`
+
 ## License
 
 MIT

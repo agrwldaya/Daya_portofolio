@@ -50,7 +50,7 @@ export default function Contact() {
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl text-terminal-green/80 font-mono max-w-3xl mx-auto"
           >
-            {'{'} Let's work together to create something amazing {'}'}
+            {'{'} Let&apos;s work together to create something amazing {'}'}
           </motion.p>
         </motion.div>
 
