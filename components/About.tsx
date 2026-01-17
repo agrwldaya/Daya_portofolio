@@ -117,23 +117,27 @@ export default function About() {
             </h3>
           </div>
           {experiences.map((exp, index) => (
-          <div className="mb-4">
-            <h4 className="text-2xl font-mono text-terminal-cyan mb-2">
-              {exp.title}
-            </h4>
-            <p className="text-terminal-green/80 font-mono mb-2">
-              {exp.company} | {exp.location} | {exp.period}
-            </p>
-            <ul className="space-y-2 mt-4">
-              {exp.achievements.map((achievement, index) => (
-                <li key={index} className="text-terminal-green/70 font-mono text-sm flex items-start gap-2">
-                  <span className="text-terminal-green mt-1">{'#'}</span>
-                  <span>{achievement}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+            <div key={index} className="mb-4">
+              <h4 className="text-2xl font-mono text-terminal-cyan mb-2">
+                {exp.title}
+              </h4>
+              <p className="text-terminal-green/80 font-mono mb-2">
+                {exp.company} | {exp.location} | {exp.period}
+              </p>
+              <ul className="space-y-2 mt-4">
+                {exp.achievements.map((achievement, index) => (
+                  <li
+                    key={index}
+                    className="text-terminal-green/70 font-mono text-sm flex items-start gap-2"
+                  >
+                    <span className="text-terminal-green mt-1">{'#'}</span>
+                    <span>{achievement}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
         </motion.div>
         <div className="grid md:grid-cols-2 gap-12">
           {/* Education */}
