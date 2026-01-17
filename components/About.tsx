@@ -3,18 +3,30 @@
 import { motion } from 'framer-motion'
 import { GraduationCap, Briefcase, Trophy, Code2 } from 'lucide-react'
 
-const experience = {
+const experiences = [
+  {
   title: 'Full-Stack Developer Intern',
   company: 'Trialshopy Marketplace Pvt. Ltd.',
   location: 'Remote',
-  period: 'Oct 2024 – Dec 2024',
+  period: 'Aug 2024 – Nov 2024',
   achievements: [
     'Engineered interactive live selling features, virtual try-ons, and real-time product recommendations increasing average session duration and reducing cart abandonment rates',
     'Optimized backend services for order processing, seller payout calculations, and price comparison logic reducing API response time by 35% and improving platform reliability',
     'Collaborated cross-functionally with design and product teams refining user experience ensuring seamless navigation across all buying journey touchpoints'
   ]
-}
-
+},
+{
+  title: 'Backend Developer Intern',
+  company: 'Secure Blink',
+  location: 'Remote',
+  period: 'Dec 2025 – Present',
+  achievements: [
+    'Engineered a serverless authentication system using AWS Cognito and Lambda, securing 5,000+ user accounts and reducing unauthorized access attempts by implementing JWT-based access control',
+    'Architected scalable RESTful microservices with the Serverless Framework, improving system reliability through custom input validation and standardized error-handling protocols',
+    'Optimized database queries in DynamoDB to reduce API latency, ensuring high availability for core backend services.'
+  ]
+},
+]
 const education = [
   {
     degree: 'Bachelor of Technology',
@@ -39,7 +51,7 @@ const education = [
 const achievements = [
   {
     icon: Code2,
-    title: '800+ Problems Solved',
+    title: '900+ Problems Solved',
     description: 'Data Structures and Competitive Programming',
   },
   {
@@ -54,8 +66,8 @@ const achievements = [
   },
   {
     icon: Code2,
-    title: 'LeetCode Expert',
-    description: 'Max rating 1800, 550+ problems solved',
+    title: 'LeetCode Knight',
+    description: 'Max rating 1901, 650+ problems solved',
   },
 ]
 
@@ -86,7 +98,7 @@ export default function About() {
             transition={{ delay: 0.4 }}
             className="text-xl md:text-2xl text-terminal-green/80 font-mono max-w-3xl mx-auto"
           >
-            {'{'} Full-Stack Developer passionate about building scalable solutions {'}'}
+            {'{'} Full-Stack Developer passionate about building scalable solutions and diving into Ai field {'}'}
           </motion.p>
         </motion.div>
 
@@ -104,15 +116,16 @@ export default function About() {
               {'>'} Work Experience
             </h3>
           </div>
+          {experiences.map((exp, index) => (
           <div className="mb-4">
             <h4 className="text-2xl font-mono text-terminal-cyan mb-2">
-              {experience.title}
+              {exp.title}
             </h4>
             <p className="text-terminal-green/80 font-mono mb-2">
-              {experience.company} | {experience.location} | {experience.period}
+              {exp.company} | {exp.location} | {exp.period}
             </p>
             <ul className="space-y-2 mt-4">
-              {experience.achievements.map((achievement, index) => (
+              {exp.achievements.map((achievement, index) => (
                 <li key={index} className="text-terminal-green/70 font-mono text-sm flex items-start gap-2">
                   <span className="text-terminal-green mt-1">{'#'}</span>
                   <span>{achievement}</span>
@@ -120,8 +133,8 @@ export default function About() {
               ))}
             </ul>
           </div>
+        ))}
         </motion.div>
-
         <div className="grid md:grid-cols-2 gap-12">
           {/* Education */}
           <motion.div
