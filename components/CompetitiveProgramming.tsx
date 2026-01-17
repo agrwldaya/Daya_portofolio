@@ -42,13 +42,14 @@ interface CodeChefData {
 // Problem-solving stats (totalSolved, easySolved, etc.) are fetched from API
 // Last updated: Based on profile snapshot
 const LEETCODE_CONTEST_STATIC_DATA = {
-  contestRating: 1773,             // Current contest rating
+  contestRating: 1901,             // Current contest rating
   contestRank: 66278,              // Global contest rank
   totalParticipants: 784100,       // Total participants (for percentage calculation)
-  topPercentage: 8.69,             // Top percentage (8.69%)
-  totalContests: 16,               // Number of contests attended
-  totalBadges: 11,                 // Total number of badges
+  topPercentage: 4.91,             // Top percentage (8.69%)
+  totalContests: 24,               // Number of contests attended
+  totalBadges: 12,                 // Total number of badges
   badges: [
+    { name: 'Knight Badge', icon: 'Knight hexagonal badge' },
     { name: '365 Days Badge', icon: 'Gold hexagonal badge' },
     { name: '20 Days Badge', icon: 'Silver hexagonal badge' },
     { name: '10 Days Badge', icon: 'Silver hexagonal badge' },
@@ -62,15 +63,15 @@ const LEETCODE_CONTEST_STATIC_DATA = {
 // Update these values manually from your CodeChef profile
 // Last updated: Based on profile snapshot
 const CODE_CHEF_STATIC_DATA = {
-  username: 'agrwldaya20',
-  rating: 1603,                    // Current rating
+  username: 'agrawaldaya20',
+  rating: 1620,                    // Current rating
   maxRating: 1625,                 // Highest rating achieved
   stars: 3,                        // Star rating (1-7)
   problemsSolved: 145,             // Total problems solved
   contests: 30,                    // Number of contests participated
   globalRank: 17451,               // Global rank
   countryRank: 15678,              // Country rank (India)
-  profileUrl: 'https://www.codechef.com/users/agrwldaya20',
+  profileUrl: 'https://www.codechef.com/users/agrawaldaya20',
   // Optional: Add badges if you want to display them
   badges: [
     { name: 'Contest Contender', level: 'Silver', progress: '30/50' },
@@ -125,8 +126,8 @@ const initialPlatforms = [
   },  
   {
     name: 'CodeChef',
-    username: 'agrwldaya20',
-    link: 'https://www.codechef.com/users/agrwldaya20',
+    username: 'agrawaldaya20',
+    link: 'https://www.codechef.com/users/agrawaldaya20',
     currentRating: 0,
     maxRating: 0,
     problemsSolved: 0,
@@ -189,7 +190,7 @@ export default function CompetitiveProgramming() {
           let badge = 'Newbie'
           let badgeColor = 'text-gray-400'
           if (data.totalSolved >= 500) {
-            badge = 'Expert'
+            badge = 'Knight'
             badgeColor = 'text-yellow-400'
           } else if (data.totalSolved >= 300) {
             badge = 'Advanced'
@@ -829,10 +830,18 @@ export default function CompetitiveProgramming() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div className="glass rounded-lg sm:rounded-xl p-4 sm:p-6 border-terminal-green/20">
               <div className="text-terminal-cyan font-mono text-base sm:text-lg mb-2 glow-cyan">
-                CodeChef START173
+                CodeChef
               </div>
               <div className="text-terminal-green/80 font-mono text-xs sm:text-sm">
-                Global Rank 300 among 47,887 participants
+                Achieved 3★ rating 
+              </div>
+            </div>
+            <div className="glass rounded-lg sm:rounded-xl p-4 sm:p-6 border-terminal-green/20">
+              <div className="text-terminal-cyan font-mono text-base sm:text-lg mb-2 glow-cyan">
+                Leetcode
+              </div>
+              <div className="text-terminal-green/80 font-mono text-xs sm:text-sm">
+                Knight Badge achiver with max rating of 1900+ 
               </div>
             </div>
             <div className="glass rounded-lg sm:rounded-xl p-4 sm:p-6 border-terminal-green/20">
