@@ -19,6 +19,31 @@ const mainProjects = [
     videoUrl: 'https://drive.google.com/file/d/1I_fTFFcDM9pSNni4d4fKJMwwj1OCVHOi/preview',
   },
   {
+    title: 'DSA-Instructor AI-Chatbot',
+    description: 'An AI-powered chatbot for DSA instructors to assist students with programming concepts, problem-solving, and learning resources.',
+    tech: ['React.js', 'Google Gemini API', 'Generative AI', 'Tailwind CSS', 'Markdown'],
+    period: 'Jan 2026 – Jan 2026',
+    highlights: [
+      'Engineered an interactive AI tutor utilizing the Google Gemini API to provide real-time, context-aware solutions to complex Data Structures and Algorithms (DSA) problems.',
+      'Designed custom system prompts to ensure the AI acts as a mentor, guiding users through logic building rather than just providing direct code solutions.'
+    ],
+    link: 'https://dsa-instructor-chatbot-eta.vercel.app/',
+    github: 'https://github.com/agrwldaya/dsa-instructor-chatbot',
+  },
+   {
+    title: 'Quick Publish - Newspaper Publishing Automation Platform',
+    description: 'An end-to-end newspaper publishing automation platform featuring multi-role authentication (Admin, Publisher, Employee) with secure payment gateway integration.',
+    tech: ['React.js', 'Redux', 'Express.js', 'MongoDB', 'JWT', 'Cloudinary', 'Razorpay'],
+    period: 'August 2024 – December 2024',
+    highlights: [
+      'Developed multi-role authentication system using JWT, cutting approval delays by 40%',
+      'Integrated Razorpay payment gateway enabling secure online transactions',
+      'Enhanced Cloudinary-based image management improving upload speed and reliability'
+    ],
+    link: 'https://quick-public.vercel.app/',
+    github: 'https://github.com/agrwldaya/Quick-Public',
+  },
+  {
     title: 'Digital Market - Location-Based Local Shopping Marketplace',
     description: 'A location-aware marketplace allowing users to discover nearby stores within a 5 km radius. Features real-time geolocation and distance-based filtering with a "Go & Pick-Up" model.',
     tech: ['Next.js', 'Express.js', 'MongoDB', 'JWT', 'Cloudinary', 'Google Maps API', 'Stripe'],
@@ -30,20 +55,7 @@ const mainProjects = [
     ],
     link: '#',
     github: 'https://github.com/agrwldaya/DigitalShop',
-  },
-  {
-    title: 'Quick Publish - Newspaper Publishing Automation Platform',
-    description: 'An end-to-end newspaper publishing automation platform featuring multi-role authentication (Admin, Publisher, Employee) with secure payment gateway integration.',
-    tech: ['React.js', 'Redux', 'Express.js', 'MongoDB', 'JWT', 'Cloudinary', 'Razorpay'],
-    period: 'August 2024 – December 2024',
-    highlights: [
-      'Developed multi-role authentication system using JWT, cutting approval delays by 40%',
-      'Integrated Razorpay payment gateway enabling secure online transactions',
-      'Enhanced Cloudinary-based image management improving upload speed and reliability'
-    ],
-    link: '#',
-    github: 'https://github.com/agrwldaya/Quick-Public',
-  },
+  }
 ]
 
 const otherProjects = [
