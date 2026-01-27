@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { Mail, Send, Linkedin, Github, Phone, X, CheckCircle } from 'lucide-react'
+import { Mail, Send, Linkedin, Github, Phone, X, CheckCircle, Instagram } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -49,6 +49,7 @@ export default function Contact() {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/agrwldaya', label: 'GitHub' },
     { icon: Linkedin, href: 'https://linkedin.com/in/dayashankar-agrawal-412a13256', label: 'LinkedIn' },
+    { icon: Instagram, href: 'https://instagram.com/agrwl_daya20', label: 'Instagram' },
     { icon: Mail, href: 'mailto:dayaagrawal20@gmail.com', label: 'Email' },
     { icon: Phone, href: 'tel:+919875720554', label: 'Phone: +91-9875720554' },
   ]

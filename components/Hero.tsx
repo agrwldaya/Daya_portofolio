@@ -2,11 +2,34 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Terminal, Code2, FileText, Download, Eye } from 'lucide-react'
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Background Image with Mask */}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
+      >
+        <div className="relative w-full h-full max-w-4xl mx-auto flex items-center justify-center translate-y-20 md:translate-y-0">
+          <Image
+            src="/portofolio_logo.png"
+            alt="Background"
+            fill
+            priority
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, 80vw"
+          />
+          {/* Gradient Mask to blend with background */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background" />
+        </div>
+      </motion.div>
+
       <div className="container mx-auto px-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -79,7 +102,7 @@ export default function Hero() {
           <Link href="/contact">
             <motion.button
               className="hacker-button border-terminal-cyan text-terminal-cyan"
-              whileHover={{ 
+              whileHover={{
                 scale: 1.05,
                 boxShadow: '0 0 20px rgba(0, 255, 255, 0.6), 0 0 40px rgba(0, 255, 255, 0.4)',
                 textShadow: '0 0 10px rgba(0, 255, 255, 0.8)'
@@ -112,8 +135,8 @@ export default function Hero() {
           <motion.a
             href="https://drive.google.com/uc?export=download&id=1H8K6rAwDKJ2f99YwitRQ9iDICjR2CN0g"
             className="flex items-center gap-2 px-6 py-3 glass rounded-lg border border-terminal-cyan/30 hover:border-terminal-cyan/50 text-terminal-cyan font-mono text-sm sm:text-base transition-all duration-300 hover:bg-terminal-cyan/10 group"
-            whileHover={{ 
-              scale: 1.05, 
+            whileHover={{
+              scale: 1.05,
               x: 5,
               boxShadow: '0 0 15px rgba(0, 255, 255, 0.4)'
             }}
