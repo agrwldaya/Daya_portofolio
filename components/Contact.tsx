@@ -1,8 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { Mail, Send, Linkedin, Github, Phone } from 'lucide-react'
+import { Mail, Send, Linkedin, Github, Phone, X, CheckCircle } from 'lucide-react'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,10 +11,39 @@ export default function Contact() {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    setStatus('loading')
+    setErrorMessage('')
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
+      setStatus('success')
+      setFormData({ name: '', email: '', message: '' })
+
+      // Auto-hide success modal after 5 seconds
+      setTimeout(() => setStatus('idle'), 5000)
+    } catch (error) {
+      console.error('Submission error:', error)
+      setStatus('error')
+      setErrorMessage(error instanceof Error ? error.message : 'Something went wrong. Please try again later.')
+    }
   }
 
   const socialLinks = [
@@ -26,6 +55,61 @@ export default function Contact() {
 
   return (
     <section className="relative py-20 md:py-32 overflow-hidden">
+      {/* Success Modal */}
+      <AnimatePresence>
+        {status === 'success' && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center px-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setStatus('idle')}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative glass p-8 rounded-3xl border-terminal-green/30 max-w-md w-full text-center shadow-2xl"
+            >
+              <button
+                onClick={() => setStatus('idle')}
+                className="absolute top-4 right-4 text-terminal-green/50 hover:text-terminal-green transition-colors"
+              >
+                <X size={24} />
+              </button>
+
+              <div className="mb-6 flex justify-center">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 10, delay: 0.2 }}
+                  className="p-4 bg-terminal-green/10 rounded-full border border-terminal-green/30"
+                >
+                  <CheckCircle size={48} className="text-terminal-green" />
+                </motion.div>
+              </div>
+
+              <h3 className="text-2xl font-mono text-terminal-green mb-4 glow-text uppercase tracking-widest">
+                {'>'} Transmission Success
+              </h3>
+              <p className="text-terminal-green/80 font-mono mb-8">
+                Message sent successfully!
+              </p>
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setStatus('idle')}
+                className="hacker-button w-full font-mono py-3"
+              >
+                {'>'} CLEAR_NOTIFICATION
+              </motion.button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0 }}
@@ -79,6 +163,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-terminal-green/5 border border-terminal-green/30 rounded-xl text-terminal-green placeholder-terminal-green/40 focus:outline-none focus:border-terminal-green focus:ring-2 focus:ring-terminal-green/20 transition-colors font-mono"
                     placeholder="Enter your name"
                     required
+                    disabled={status === 'loading'}
                   />
                 </div>
                 <div>
@@ -92,6 +177,7 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-terminal-green/5 border border-terminal-green/30 rounded-xl text-terminal-green placeholder-terminal-green/40 focus:outline-none focus:border-terminal-green focus:ring-2 focus:ring-terminal-green/20 transition-colors font-mono"
                     placeholder="your.email@example.com"
                     required
+                    disabled={status === 'loading'}
                   />
                 </div>
                 <div>
@@ -105,16 +191,29 @@ export default function Contact() {
                     className="w-full px-4 py-3 bg-terminal-green/5 border border-terminal-green/30 rounded-xl text-terminal-green placeholder-terminal-green/40 focus:outline-none focus:border-terminal-green focus:ring-2 focus:ring-terminal-green/20 transition-colors resize-none font-mono"
                     placeholder="Your message..."
                     required
+                    disabled={status === 'loading'}
                   />
                 </div>
+
+                {status === 'error' && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-500 font-mono text-sm"
+                  >
+                    {'>'} {errorMessage}
+                  </motion.p>
+                )}
+
                 <motion.button
                   type="submit"
-                  className="hacker-button w-full flex items-center justify-center gap-2"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={status === 'loading'}
+                  className={`hacker-button w-full flex items-center justify-center gap-2 ${status === 'loading' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  whileHover={status !== 'loading' ? { scale: 1.02 } : {}}
+                  whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
                 >
                   <Send size={18} />
-                  {'>'} Send Message
+                  {status === 'loading' ? '> Sending...' : '> Send Message'}
                 </motion.button>
               </form>
             </motion.div>
